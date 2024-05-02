@@ -1,0 +1,176 @@
+#include "pch.h"
+#include <iostream>
+#include <cmath>
+#include <gtest/gtest.h>
+# define M_PI 3.14159265358979323846
+
+using namespace std;
+
+double ElectricCharge(double I, double t) {
+    return I * t;
+}
+
+double LinearDensity(double q, double L) {
+    return q / L;
+}
+
+double SurfaceDensity(double q, double S) {
+    return q / S;
+}
+
+double VolumeDensity(double q, double V) {
+    return q / V;
+}
+
+double Tension(double F, double q) {
+    return F / q;
+}
+
+double ElectricWork(double q, double U) {
+    return q * U;
+}
+
+double Potential(double W, double q) {
+    return W / q;
+}
+
+double Capacity(double q, double f) {
+    return q / f;
+}
+
+double CapacitorCharge(double C, double U) {
+    return C * U;
+}
+
+double CapacitorTension(double U, double d) {
+    return U / d;
+}
+
+// Unit tests
+
+TEST(ElectricChargeTest, PositiveValues) {
+    EXPECT_EQ(875, ElectricCharge(25, 35));
+    EXPECT_EQ(235, ElectricCharge(4.7, 50));
+}
+
+TEST(LinearDensityTest, PositiveValues) {
+    EXPECT_DOUBLE_EQ(0.1, LinearDensity(0.7, 7));
+    EXPECT_DOUBLE_EQ(1, LinearDensity(2, 2));
+}
+
+TEST(SurfaceDensityTest, PositiveValues) {
+    EXPECT_EQ(0.2, SurfaceDensity(2, 10));
+    EXPECT_EQ(0.2, SurfaceDensity(0.8, 4));
+}
+
+TEST(VolumeDensityTest, PositiveValues) {
+    EXPECT_EQ(0.125, VolumeDensity(4, 32));
+    EXPECT_EQ(2, VolumeDensity(8, 4));
+}
+
+TEST(TensionTest, PositiveValues) {
+    EXPECT_EQ(16, Tension(32, 2));
+    EXPECT_EQ(7, Tension(28, 4));
+}
+
+TEST(ElectricWorkTest, PositiveValues) {
+    EXPECT_EQ(72, ElectricWork(18, 4));
+    EXPECT_EQ(21, ElectricWork(21, 1));
+}
+
+TEST(PotentialTest, PositiveValues) {
+    EXPECT_DOUBLE_EQ(8, Potential(24, 3));
+    EXPECT_DOUBLE_EQ(2.6, Potential(13, 5));
+}
+
+TEST(CapacityTest, PositiveValues) {
+    EXPECT_EQ(1, Capacity(3, 3));
+    EXPECT_EQ(0.3, Capacity(2.4, 8));
+}
+
+TEST(CapacitorChargeTest, PositiveValues) {
+    EXPECT_DOUBLE_EQ(75, CapacitorCharge(25, 3));
+    EXPECT_DOUBLE_EQ(52.7, CapacitorCharge(31, 1.7));
+}
+
+TEST(CapacitorTensionTest, PositiveValues) {
+    EXPECT_EQ(9, CapacitorTension(27, 3));
+    EXPECT_EQ(8.2, CapacitorTension(41, 5));
+}
+
+
+int main(int argc, char** argv) {
+    setlocale(LC_ALL, "");
+    int n;
+    double I, t, q, L, S, V, F, U, W, f, C, d;
+
+    cout << "Выберите значение, которое нужно рассчитать:\n";
+    cout << "1. Электрический заряд\n";
+    cout << "2. Линейная плотность заряда\n";
+    cout << "3. Поверхностная плотность заряда\n";
+    cout << "4. Объемная плотность заряда\n";
+    cout << "5. Напряженность электрического поля\n";
+    cout << "6. Работа электрического поля\n";
+    cout << "7. Потенциал\n";
+    cout << "8. Электрическая емкость\n";
+    cout << "9. Заряд конденсатора\n";
+    cout << "10. Напряженность электрического поля конденсатора\n";
+    cout << "Введите номер: ";
+    cin >> n;
+
+    if (n == 1) {
+        cout << "Введите силу тока и время: ";
+        cin >> I >> t;
+        cout << "Электрический заряд: " << ElectricCharge(I, t) << endl;
+    }
+    if (n == 2) {
+        cout << "Введите заряд и длину: ";
+        cin >> q >> L;
+        cout << "Линейная плотность заряда: " << LinearDensity(q, L) << endl;
+    }
+    if (n == 3) {
+        cout << "Введите заряд и площадь: ";
+        cin >> q >> S;
+        cout << "Поверхностная плотность заряда: " << SurfaceDensity(q, S) << endl;
+    }
+    if (n == 4) {
+        cout << "Введите заряд и объем: ";
+        cin >> q >> V;
+        cout << "Объемная плотность заряда: " << VolumeDensity(q, V) << endl;
+    }
+    if (n == 5) {
+        cout << "Введите силу и заряд: ";
+        cin >> F >> q;
+        cout << "Напряженность электрического поля: " << Tension(F, q) << endl;
+    }
+    if (n == 6) {
+        cout << "Введите заряд и напряжение: ";
+        cin >> q >> U;
+        cout << "Работа электрического поля: " << ElectricWork(q, U) << endl;
+    }
+    if (n == 7) {
+        cout << "Введите энергию и заряд: ";
+        cin >> W >> q;
+        cout << "Потенциал: " << Potential(W, q) << endl;
+    }
+    if (n == 8) {
+        cout << "Введите заряд и разность потенциалов: ";
+        cin >> q >> f;
+        cout << "Электрическая емкость: " << Capacity(q, f) << endl;
+    }
+    if (n == 9) {
+        cout << "Введите электроемкость и напряжение: ";
+        cin >> C >> U;
+        cout << "Заряд конденсатора: " << CapacitorCharge(C, U) << endl;
+    }
+    if (n == 10) {
+        cout << "Введите напряжение и расстояние: ";
+        cin >> U >> d;
+        cout << "Напряженность электрического поля конденсатора: " << CapacitorTension(U, d) << endl;
+    }
+    else {
+        cout << "Ошибка! Неверный выбор.\n";
+    }
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
